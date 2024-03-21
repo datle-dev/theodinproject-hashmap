@@ -1,3 +1,5 @@
+import { Node, LinkedList } from './linked-lists.mjs';
+
 function HashMap() {
     let bucket = [];
     let capacity;
