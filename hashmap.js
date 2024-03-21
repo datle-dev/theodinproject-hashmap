@@ -1,4 +1,8 @@
-const HashMap = (function () {
+function HashMap() {
+    let bucket = [];
+    let capacity;
+    const loadFactor = 0.75;
+
     const hash = (key) => {
         let hashCode = 0;
 
