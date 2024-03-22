@@ -66,8 +66,8 @@ function HashMap() {
         }
         const hashKey = hash(key);
         if (has(key)) {
-            const removeIndex = bucket[hashKey].findByKey();
-            bucket[hashKey].removeAt(removeIndex);
+            const removeIndex = buckets[hashKey].findByKey(key);
+            buckets[hashKey].removeAt(removeIndex);
             return true;
         } else {
             return false;
