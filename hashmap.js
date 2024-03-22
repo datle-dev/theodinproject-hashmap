@@ -50,6 +50,15 @@ function HashMap() {
 
     };
 
+    const updateCapacity = () => {
+        const fullCount = bucket.reduce((accumulator, current) => accumulator + (current != null), 0);
+        capacity = fullCount / bucket.length;
+    };
+
+    const isOverCapacity = () => {
+        (capacity > loadFactor) ? true : false;
+    };
+
     return {
         hash,
         set,
