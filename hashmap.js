@@ -15,11 +15,31 @@ function HashMap() {
     };
 
     const set = (key, value) => {
-
+        if (typeof key !== 'string') {
+            console.log('Key must be a string')
+            return;
+        }
+        const hashKey = hash(key);
+        if (bucket[hashKey] == null) {
+            bucket[hashKey] = LinkedList(value, key);
+        } else {
+            let linkList = bucket[hashKey];
+            linkList.append(value, key);
+            return;
+        }
     };
 
     const get = (key) => {
-
+        if (typeof key !== 'string') {
+            console.log('Key must be a string')
+            return;
+        }
+        const hashKey = hash(key);
+        if (bucket[hashKey] == null) {
+            return null;
+        } else {
+            return bucket[hashKey].getNodeAtKey(key).value;
+        }
     };
 
     const has = (key) => {
