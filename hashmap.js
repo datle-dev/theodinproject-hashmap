@@ -87,7 +87,13 @@ function HashMap() {
     };
 
     const length = () => {
-
+        let keyCount = 0;
+        buckets.forEach((bucket) => {
+            if (bucket != null) {
+                keyCount += bucket.size()
+            }
+        });
+        return keyCount;
     };
 
     const clear = () => {
@@ -95,15 +101,30 @@ function HashMap() {
     };
 
     const keys = () => {
-
+        let foundKeys = [];
+        buckets.forEach((bucket) => {
+            if (bucket != null) {
+                foundKeys = foundKeys.concat(bucket.getKeys());
+            }
+        });
+        return foundKeys;
     };
 
     const values = () => {
-
+        let foundValues = [];
+        buckets.forEach((bucket) => {
+            if (bucket != null) {
+                foundValues = foundValues.concat(bucket.getValues());
+            }
+        });
+        return foundValues;
     };
 
     const entries = () => {
-
+        let foundKeys = keys();
+        let foundValues = values();
+        let foundEntries = foundKeys.map((key, ind) => [key, foundValues[ind]])
+        return foundEntries;
     };
 
     const updateCapacity = () => {
