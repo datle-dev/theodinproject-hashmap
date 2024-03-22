@@ -22,8 +22,8 @@ export function LinkedList (value = null, key = null) {
         return tailNode;
     };
 
-    const append = (value) => {
-        let newNode = Node(initValue = value);
+    const append = (value, key = null) => {
+        let newNode = Node(value, key);
         if (headNode == null && tailNode == null) {
             headNode = newNode;
             tailNode = newNode;
