@@ -1,7 +1,7 @@
 import { Node, LinkedList } from './linked-lists.mjs';
 
 function HashMap() {
-    let bucket = Array(16);
+    let bucket = Array(16).fill(null);
     let capacity;
     const loadFactor = 0.75;
 
