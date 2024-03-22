@@ -43,7 +43,20 @@ function HashMap() {
     };
 
     const has = (key) => {
-
+        if (typeof key !== 'string') {
+            console.log('Key must be a string')
+            return;
+        }
+        const hashKey = hash(key);
+        if (bucket[hashKey]) {
+            if (bucket[hashKey].getNodeAtKey(key)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     };
 
     const remove = (key) => {
