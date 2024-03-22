@@ -28,6 +28,8 @@ function HashMap() {
         } else {
             let linkList = buckets[hashKey];
             linkList.append(value, key);
+            updateCapacity();
+            if (isOverCapacity()) {growBuckets()};
             return;
         }
     };
@@ -80,6 +82,8 @@ function HashMap() {
         if (has(key)) {
             const removeIndex = buckets[hashKey].findByKey(key);
             buckets[hashKey].removeAt(removeIndex);
+            updateCapacity();
+            if (isOverCapacity()) {growBuckets()};
             return true;
         } else {
             return false;
@@ -98,6 +102,8 @@ function HashMap() {
 
     const clear = () => {
         buckets = Array(buckets.length).fill(null);
+        updateCapacity();
+        if (isOverCapacity()) {growBuckets()};
     };
 
     const keys = () => {
@@ -135,6 +141,17 @@ function HashMap() {
     const isOverCapacity = () => {
         (capacity > loadFactor) ? true : false;
     };
+
+    const growBuckets = () => {
+        let foundEntries = entries();
+        buckets = Array(buckets.length * 2).fill(null);
+        foundEntries.forEach((entry) => {
+            let key = entry[0];
+            let val = entry[1];
+            set(key, val);
+        });
+        updateCapacity();
+    }
 
     return {
         hash,
