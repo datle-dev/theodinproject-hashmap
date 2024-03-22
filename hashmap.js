@@ -1,7 +1,7 @@
 import { Node, LinkedList } from './linked-lists.mjs';
 
 function HashMap() {
-    let bucket = Array(16).fill(null);
+    let buckets = Array(16).fill(null);
     let capacity;
     const loadFactor = 0.75;
 
@@ -9,7 +9,7 @@ function HashMap() {
         let hashCode = 0;
         const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % 16;
+            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % buckets.length;
         }
         return hashCode;
     };
@@ -79,7 +79,7 @@ function HashMap() {
     };
 
     const clear = () => {
-
+        buckets = Array(buckets.length).fill(null);
     };
 
     const keys = () => {
@@ -95,8 +95,8 @@ function HashMap() {
     };
 
     const updateCapacity = () => {
-        const fullCount = bucket.reduce((accumulator, current) => accumulator + (current != null), 0);
-        capacity = fullCount / bucket.length;
+        const fullCount = buckets.reduce((accumulator, current) => accumulator + (current != null), 0);
+        capacity = fullCount / buckets.length;
     };
 
     const isOverCapacity = () => {
