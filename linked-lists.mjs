@@ -46,6 +46,9 @@ export function LinkedList (value = null, key = null) {
 
     const size = () => {
         let iterNode = headNode;
+        if (iterNode == null) {
+            return 0;
+        }
         let count = 1;
         while (iterNode.next != null) {
             count++;
@@ -58,6 +61,9 @@ export function LinkedList (value = null, key = null) {
         let iterNode = headNode;
         let count = 0;
         while (count !== index) {
+            if (iterNode == null) {
+                return null;
+            }
             count++;
             iterNode = iterNode.next;
         }
