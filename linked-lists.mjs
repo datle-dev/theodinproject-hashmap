@@ -5,13 +5,13 @@ export function Node (initValue = null, initKey = null) {
     return {key, value, next};
 };
 
-export function LinkedList (value = null) {
+export function LinkedList (value = null, key = null) {
     let headNode = null;
     let tailNode = null;
 
     if (value != null) {
-        headNode = Node(initValue = value);
-        tailNode = Node(initValue = value);
+        headNode = Node(value, key);
+        tailNode = headNode;
     }
 
     const head = () => {
@@ -33,8 +33,8 @@ export function LinkedList (value = null) {
         }
     };
 
-    const prepend = (value) => {
-        let newNode = Node(initValue = value);
+    const prepend = (value, key = null) => {
+        let newNode = Node(value, key);
         if (headNode == null && tailNode == null) {
             headNode = newNode;
             tailNode = newNode;
@@ -145,7 +145,7 @@ export function LinkedList (value = null) {
             append(value);
             return;
         } else {
-            let newNode = Node(initValue = value);
+            let newNode = Node(value);
             let prevNode = at(index - 1);
             let nextNode = at(index);
             prevNode.next = newNode;
