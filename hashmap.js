@@ -35,10 +35,10 @@ function HashMap() {
             return;
         }
         const hashKey = hash(key);
-        if (bucket[hashKey] == null) {
-            return null;
-        } else {
+        if (has(key)) {
             return bucket[hashKey].getNodeAtKey(key).value;
+        } else {
+            return null;
         }
     };
 
@@ -60,7 +60,18 @@ function HashMap() {
     };
 
     const remove = (key) => {
-
+        if (typeof key !== 'string') {
+            console.log('Key must be a string')
+            return;
+        }
+        const hashKey = hash(key);
+        if (has(key)) {
+            const removeIndex = bucket[hashKey].findByKey();
+            bucket[hashKey].removeAt(removeIndex);
+            return true;
+        } else {
+            return false;
+        }
     };
 
     const length = () => {
