@@ -121,6 +121,26 @@ export function LinkedList (value = null, key = null) {
         }
     };
 
+    const findByKey = (key) => {
+        let foundIndex = null;
+        let count = 0;
+        if (headNode == null && tailNode == null) {
+            console.log('no nodes to find');
+            return foundIndex;
+        } else {
+            let iterNode = headNode;
+            while (iterNode != null) {
+                if (iterNode.key == key) {
+                    foundIndex = count;
+                    return foundIndex;
+                }
+                count++;
+                iterNode = iterNode.next;
+            }
+            return foundIndex;
+        }
+    }
+
     const getNodeAtKey = (key) => {
         if (headNode == null && tailNode == null) {
             return null;
@@ -191,6 +211,7 @@ export function LinkedList (value = null, key = null) {
         pop,
         contains,
         find,
+        findByKey,
         getNodeAtKey,
         toString,
         insertAt,
