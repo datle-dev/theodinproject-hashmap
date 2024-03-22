@@ -4,9 +4,14 @@ export function Node (initValue = null) {
     return {value, next};
 };
 
-export function LinkedList () {
+export function LinkedList (value = null) {
     let headNode = null;
     let tailNode = null;
+
+    if (value != null) {
+        headNode = Node(value);
+        tailNode = Node(value);
+    }
 
     const head = () => {
         return headNode;
