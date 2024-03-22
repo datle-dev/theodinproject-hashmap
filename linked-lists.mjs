@@ -177,6 +177,32 @@ export function LinkedList (value = null, key = null) {
         return s;
     };
 
+    const getKeys = () => {
+        let keys = [];
+        if (headNode == null && tailNode == null) {
+            return keys;
+        }
+        let iterNode = headNode;
+        while (iterNode != null) {
+            keys.push(iterNode.key);
+            iterNode = iterNode.next;
+        }
+        return keys;
+    }
+
+    const getValues = () => {
+        let values = [];
+        if (headNode == null && tailNode == null) {
+            return values;
+        }
+        let iterNode = headNode;
+        while (iterNode != null) {
+            values.push(iterNode.value);
+            iterNode = iterNode.next;
+        }
+        return values;
+    }
+
     const insertAt = (value, index) => {
         if (index == 0) {
             prepend(value);
@@ -219,6 +245,8 @@ export function LinkedList (value = null, key = null) {
         find,
         findByKey,
         getNodeAtKey,
+        getKeys,
+        getValues,
         toString,
         insertAt,
         removeAt,
