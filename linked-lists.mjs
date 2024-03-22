@@ -121,6 +121,20 @@ export function LinkedList (value = null, key = null) {
         }
     };
 
+    const getNodeAtKey = (key) => {
+        if (headNode == null && tailNode == null) {
+            return null;
+        } else {
+            let iterNode = headNode;
+            while (iterNode != null) {
+                if (iterNode.key == key) {
+                    return iterNode;
+                }
+                iterNode = iterNode.next;
+            }
+        }
+    };
+
     const toString = () => {
         let s = '';
         if (headNode == null && tailNode == null) {
@@ -177,6 +191,7 @@ export function LinkedList (value = null, key = null) {
         pop,
         contains,
         find,
+        getNodeAtKey,
         toString,
         insertAt,
         removeAt,
